@@ -10,6 +10,7 @@ import CreatePost from './components/screens/CreatePost'
 import UserProfile from './components/screens/UserProfile'
 import SubscribedUserPosts from './components/screens/SubscribedUserPosts'
 import Reset from './components/screens/Reset'
+import NewPassword from './components/screens/Newpassword'
 import { reducer, initialState } from './reducers/userReducer'
 
 
@@ -55,6 +56,9 @@ const Routing = () =>{
     </Route>
     <Route path="/reset">
       <Reset />
+    </Route>
+    <Route exact path="/reset/:token">
+      <NewPassword />
     </Route>
   </Switch>
   )

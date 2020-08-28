@@ -118,13 +118,34 @@ router.post('/reset-password',(req,res)=>{
                     subject:"password reset",
                     html:`
                     <p>You requested for password reset</p>
-                    <h5><a href="http://localhost:3000/reset/${token}">Click here</a> to reset password</h5>
+                    <h5><a href="https://instaclonebyaj.herokuapp.com/reset/${token}">Click here</a> to reset password</h5>
                     `
                 })
                 res.json({message:"check your email"})
             })
         })
 
+    })
+})
+
+router.post('/new-password',(req,res)=>{
+    const newPassword = req.body.password
+    const sentToken = req.body.token
+    User.findOne({resetToken:sentToken,expireToken:{$gt:Date.now()}})
+    .then(user=>{
+        if(!user){
+            return res.status(422).json({error:"Session Expired, try again !"})
+        }
+        bcrypt.hash(newPassword,12).then(hashedpassword=>{
+            user.password = hashedpassword 
+            user.resetToken = undefined
+            user.expireToken = undefined
+            user.save().then((savedUser)=>{
+                res.json({message:"password updated successfully"})
+            })
+        })
+    }).catch(err=>{
+        console.log(err)
     })
 })
 
