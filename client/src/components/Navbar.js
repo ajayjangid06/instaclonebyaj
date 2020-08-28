@@ -15,7 +15,7 @@ const NavBar = ()=>{
     const renderList = () =>{
         if(state){
             return[
-                <li key="1"><i data-target="modal1" className="large material-icons data-trigger" style={{color:"black"}}>search</i></li>,
+                <li key="1"><i data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>,
                 <li key="2"><Link to="/profile">Profile</Link></li>,
                 <li key="3"><Link to="/createpost">Create Post</Link></li>,
                 <li key="4"><Link to="/myfollowingpost">My Following Posts</Link></li>,
@@ -45,7 +45,7 @@ const NavBar = ()=>{
         fetch('/search-users',{
             method:"post",
             headers:{
-                "Content-Type":"appkication/json"
+                "Content-Type":"application/json"
             },
             body:JSON.stringify({
                 query:query

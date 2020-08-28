@@ -51,7 +51,7 @@ router.post('/signup',(req,res)=>{
             .then(user=>{
                 transporter.sendMail({
                     to:user.email,
-                    from:"donoreply@insta.com",
+                    from:"donotreply@insta.com",
                     subject:"sigup success",
                     html:"<h1>Welcome to instagram</h1>"
                 })
