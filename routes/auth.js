@@ -9,10 +9,11 @@ const {JWT_SECRET} = require('../config/keys')
 const requireLogin = require('../middleware/requireLogin') 
 const nodemailer = require('nodemailer')
 const sendgridTransport = require('nodemailer-sendgrid-transport')
+const {SENDGRID_API,EMAIL} =require('../config/keys')
 
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth:{
-        api_key:"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"
+        api_key:SENDGRID_API
     }
 }))
 
@@ -118,7 +119,7 @@ router.post('/reset-password',(req,res)=>{
                     subject:"password reset",
                     html:`
                     <p>You requested for password reset</p>
-                    <h5><a href="https://instaclonebyaj.herokuapp.com/reset/${token}">Click here</a> to reset password</h5>
+                    <h5><a href="${EMAIL}/reset/${token}">Click here</a> to reset password</h5>
                     `
                 })
                 res.json({message:"check your email"})

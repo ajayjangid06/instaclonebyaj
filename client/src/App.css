@@ -53,3 +53,7 @@ a{
 .material-icons:hover{
   cursor: pointer;
 }
+
+.collection-app{
+  width: 100%;
+}
