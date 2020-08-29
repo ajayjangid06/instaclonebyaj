@@ -113,9 +113,10 @@ const Home = ()=>{
         <div className="home">
            {
                data.map(item=>{
+                   console.log(item.postedBy)
                    return(
                        <div className="card home-card" key={item._id}>
-                            <h5 style={{padding:"5px"}}><Link to={item._id !== state._id?"/profile/"+item._id :"/profile"  }>{item.name}</Link> {item._id == state._id 
+                            <h5 style={{padding:"5px"}}><Link to={item.postedBy._id !== state._id?"/profile/"+item.postedBy._id :"/profile"  }>{item.postedBy.name}</Link> {item.postedBy._id == state._id 
                             && <i className="material-icons" style={{
                                 float:"right"
                             }} 
