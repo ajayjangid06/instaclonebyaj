@@ -57,8 +57,6 @@ const CreatePost = () =>{
 
         
     }
-    
-
     return(
         <div className="card input-field"
         style={{

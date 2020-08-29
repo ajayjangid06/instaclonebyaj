@@ -9,13 +9,13 @@ const NavBar = ()=>{
     const [userDetails,setUserDetails ] = useState([])
     const {state,dispatch} = useContext(UserContext)
     const history = useHistory()
-    useEffect(()=>{
-        M.Modal.init(searchModal.current)
-    })
+    // useEffect(()=>{
+    //     M.Modal.init(searchModal.current)
+    // })
     const renderList = () =>{
         if(state){
             return[
-                <li key="1"><i data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>,
+                //<li key="1"><i data-target="modal1" className="large material-icons modal-trigger" style={{color:"black"}}>search</i></li>,
                 <li key="2"><Link to="/profile">Profile</Link></li>,
                 <li key="3"><Link to="/createpost">Create Post</Link></li>,
                 <li key="4"><Link to="/myfollowingpost">My Following Posts</Link></li>,
@@ -65,7 +65,7 @@ const NavBar = ()=>{
                         {renderList()}
                     </ul>
             </div>
-            <div id="modal1" className="modal" ref={searchModal} style={{color:"black"}}>
+            {/* <div id="modal1" className="modal" ref={searchModal} style={{color:"black"}}>
                 <div className="modal-content">
                     <input
                     type="text" 
@@ -90,7 +90,7 @@ const NavBar = ()=>{
                         close
                     </button>
                 </div>
-            </div>
+            </div> */}
 
 
         </nav>

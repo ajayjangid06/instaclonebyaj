@@ -14,7 +14,7 @@ const Home = ()=>{
         .then(result=>{
             //console.log(result)
             setData(result.posts)
-        })
+        })            
     },[])
     const likePost=(id)=>{
         fetch('/like',{
@@ -111,49 +111,35 @@ const Home = ()=>{
     }
     return(
         <div className="home">
-            {
-                data.map(item=>{
-                    return(
-                        <div className="card home-card" key={item._id}>
-                            <h5 style={{padding:"5px"}}><Link to= {item.postedBy._id !== state._id?"/profile/"+item.postedBy._id:"/profile"}>{item.postedBy.name}</Link>
-                                {item.postedBy._id === state._id
-                                &&
-                                <i 
-                                    className="material-icons" 
-                                    style={{float:"right"}}
-                                    onClick={()=>deletePost(item._id)}
-                                >
-                                    delete
-                                </i>
-                                }
-                                
-                            </h5>
+           {
+               data.map(item=>{
+                   return(
+                       <div className="card home-card" key={item._id}>
+                            <h5 style={{padding:"5px"}}><Link to={item._id !== state._id?"/profile/"+item._id :"/profile"  }>{item.name}</Link> {item._id == state._id 
+                            && <i className="material-icons" style={{
+                                float:"right"
+                            }} 
+                            onClick={()=>deletePost(item._id)}
+                            >delete</i>
+
+                            }</h5>
                             <div className="card-image">
-                                <img
-                                src={item.photo}
-                                alt="img-card"
-                                />
+                                <img src={item.photo}/>
                             </div>
                             <div className="card-content">
-                                <i className="material-icons" style={{color:"red"}}>favorite</i>
-                                {
-                                item.likes.includes(state._id)
-                                ?
-                                <i 
-                                className="material-icons"
-                                onClick={()=>{unlikePost(item._id)}}
-                                >thumb_down</i>
-                                
-                                :
-                               
-                                <i 
-                                className="material-icons"
-                                onClick={()=>{likePost(item._id)}}
-                                >thumb_up</i>
-
+                            <i className="material-icons" style={{color:"red"}}>favorite</i>
+                            {item.likes.includes(state._id)
+                            ? 
+                             <i className="material-icons"
+                                    onClick={()=>{unlikePost(item._id)}}
+                              >thumb_down</i>
+                            : 
+                            <i className="material-icons"
+                            onClick={()=>{likePost(item._id)}}
+                            >thumb_up</i>
                             }
-                                
-                                
+                            
+                           
                                 <h6>{item.likes.length} likes</h6>
                                 <h6>{item.title}</h6>
                                 <p>{item.body}</p>
@@ -168,16 +154,17 @@ const Home = ()=>{
                                     e.preventDefault()
                                     makeComment(e.target[0].value,item._id)
                                 }}>
-                                    <input type="text" placeholder="add a comment" />
-
+                                  <input type="text" placeholder="add a comment" />  
                                 </form>
                                 
                             </div>
-                        </div>
-                    )
-                })
-            }
-        </div>
+                        </div> 
+                   )
+               })
+           }
+          
+          
+       </div>
     );
 }
 
