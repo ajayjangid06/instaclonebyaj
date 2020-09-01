@@ -11,7 +11,7 @@ const nodemailer = require('nodemailer')
 const sendgridTransport = require('nodemailer-sendgrid-transport')
 const {SENDGRID_API,EMAIL} =require('../config/keys')
 
-//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  API KEY FOR instaclonebyaj GENERATED ON 31AUG, 2020 12:31 PM
+//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  API KEY FOR instaclonebyaj GENERATED ON 31AUG, 2020 12:31 PM
 
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth:{
